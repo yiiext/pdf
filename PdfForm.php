@@ -87,10 +87,32 @@ abstract class PdfForm extends CModel
 		foreach ($this->getAttributes($attributes) as $attribute => $val) {
 			if (!array_key_exists($attribute, $this->getMetaData()->fields))
 				throw new CException("There is no field '$field' in $this->_pdf file");
-			$fdf .= '<</V(' . trim($val) . ')/T(' . $attribute . ')>>';
+			$fdf .= '<</V(' . trim(self::escapeValue($val)) . ')/T(' . $attribute . ')>>';
 		}
 		$fdf .= "]>>>>\nendobj\ntrailer\n<</Root 1 0 R>>\n%%EOF";
 		return $fdf;
+	}
+
+	/**
+	 * Escape PDF form value
+	 *
+	 * @param string $str
+	 * @return string
+	 */
+	static function escapeValue($str)
+	{
+		$str = (string) $str;
+		$result = '';
+		for ($i = 0, $strLen = strlen($str); $i < $strLen; ++$i) {
+			if (ord($str{$i}) == 0x28 || ord($str{$i}) == 0x29 || ord($str{$i}) == 0x5c) {
+				$result .= chr(0x5c) . $str{$i};
+			} else if (ord($str{$i}) < 32 || 126 < ord($str{$i})) {
+				$result .= sprintf("\\%03o", ord($str{$i}));
+			} else {
+				$result .= $str{$i};
+			}
+		}
+		return $result;
 	}
 
 	/**
