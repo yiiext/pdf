@@ -97,4 +97,19 @@ class Pdftk
 		$content = stream_get_contents($handle);
 		return -1 !== pclose($handle) ? $content : false;
 	}
+
+	/**
+	 * Applies  a  PDF watermark to the background of a single input PDF.
+	 * @param PdfFile $in an instance of PdfFile the background will be applied to
+	 * @param PdfFile $back an instance of PdfFile which will be used as a background
+	 * @return PdfString an instance of PdfString with applied background
+	 * on success, false on failure
+	 */
+	public function background(PdfFile $in, PdfFile $back)
+	{
+		if (false === ($handle = popen("{$this->pdftk} $in background $back output -", 'r')))
+			return false;
+		$content = stream_get_contents($handle);
+		return -1 !== pclose($handle) ? $content : false;
+	}
 }

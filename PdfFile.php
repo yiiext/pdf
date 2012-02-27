@@ -73,6 +73,19 @@ class PdfFile extends Pdf
 	}
 
 	/**
+	 * Apply another PDF as background for each page of current PDF
+	 * @param PdfFile $back an instance of PdfFile which will be used as a background
+	 * @return PdfString an instance of PdfString with applied background
+	 * on success, false on failure
+	 */
+	function applyBackground(PdfFile $back)
+	{
+		$pdftk = Pdftk::getInstance();
+		$result = $pdftk->background($this, $back);
+		return $result ? new PdfString($result) : false;
+	}
+
+	/**
 	 * String magic method
 	 * @return string the absolute path to the current pdf file
 	 * @see file
