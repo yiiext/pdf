@@ -88,6 +88,13 @@ if ($mergedPdf instanceOf Pdf)
 	$mergedPdf->output('out.pdf');
 ~~~
 
+There is an ability to apply one PDF file as a background for another one:
+
+~~~
+$pdf = new PdfFile('/home/user/in.pdf');
+$pdf->applyBackground(new PdfFile('/home/user/back.pdf'))->output('pdf_with_watermark');
+~~~
+
 Credits
 -------
 

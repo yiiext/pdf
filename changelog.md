@@ -1,3 +1,9 @@
+1.1
+---
+
+- Added ability to apply one PDF file as a background on another one (Rinat Silnov)
+- Added PDF form field value escaping (Rinat Silnov)
+
 1.0
 ---
 
