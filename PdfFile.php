@@ -52,7 +52,7 @@ class PdfFile extends Pdf
 	 */
 	function getContent()
 	{
-		return file_get_content($this->file);
+		return file_get_contents($this->file);
 	}
 
 	/**
