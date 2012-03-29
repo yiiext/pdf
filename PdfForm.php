@@ -86,7 +86,7 @@ abstract class PdfForm extends CModel
 		$fdf = "%FDF-1.2\n%âãÏÓ\n1 0 obj\n<</FDF << /Fields [ ";
 		foreach ($this->getAttributes($attributes) as $attribute => $val) {
 			if (!array_key_exists($attribute, $this->getMetaData()->fields))
-				throw new CException("There is no field '$field' in $this->_pdf file");
+				throw new CException("There is no field '$val' in $this->_pdf file");
 			$fdf .= '<</V(' . trim(self::escapeValue($val)) . ')/T(' . $attribute . ')>>';
 		}
 		$fdf .= "]>>>>\nendobj\ntrailer\n<</Root 1 0 R>>\n%%EOF";

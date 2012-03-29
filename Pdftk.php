@@ -71,7 +71,7 @@ class Pdftk
 		   1 => array("pipe", "w"),
 		);
 
-		$process = proc_open("{$this->pdftk} $pdfForm fill_form - output -", $descriptorspec, $pipes, '/tmp');
+		$process = proc_open("{$this->pdftk} $pdfForm fill_form - output -", $descriptorspec, $pipes);
 
 		if (!is_resource($process))
 			return false;

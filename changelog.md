@@ -1,6 +1,8 @@
 1.1
 ---
 
+- Bug #3: Removed last argument from  proc_open call in Pdftk::fillForm method (Rinat Silnov)
+- Enh #1: Added readme in Russian (ln-dim)
 - Added ability to apply one PDF file as a background on another one (Rinat Silnov)
 - Added PDF form field value escaping (Rinat Silnov)
 
